@@ -13,3 +13,4 @@
    - django-admin startapp reservations
 
 - 나라리스트 : https://github.com/SmileyChris/django-countries
+- seed : https://github.com/Brobin/django-seed

@@ -9,7 +9,7 @@ class Review(core_models.TimeStampedModel):
     review = models.TextField()
     accuracy = models.IntegerField()
     communication = models.IntegerField()
-    cleanlines = models.IntegerField()
+    cleanliness = models.IntegerField()
     location = models.IntegerField()
     check_in = models.IntegerField()
     value = models.IntegerField()
