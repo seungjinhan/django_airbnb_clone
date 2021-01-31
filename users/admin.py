@@ -24,10 +24,18 @@ class CustomUserAdmin(UserAdmin):
             },
         ),
     )
-    # 어드민 리스트에 보여질 항목
-    # list_display = ("username", "email", "gender", "language", "superhost")
-    # list_filter = (
-    #     "language",
-    #     "currency",
-    #     "superhost",
-    # )
+
+    list_display = (
+        "username",
+        "first_name",
+        "last_name",
+        "email",
+        "is_active",
+        "language",
+        "currency",
+        "superhost",
+        "is_staff",
+        "is_superuser",
+    )
+
+    list_filter = UserAdmin.list_filter + ("superhost",)
