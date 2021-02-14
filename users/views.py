@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect, reverse
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login, logout
 from . import forms
+from . import models
 
 # class LoginView(View):
 #     def get(self, req):
@@ -56,4 +57,21 @@ class SignUpView(FormView):
         user = authenticate(self.request, username=email, password=password)
         if user is not None:
             login(self.request, user)
+        
+        user.verify_email()
+
         return super().form_valid(form)
+
+
+def complete_verification(req, key):
+    try:
+        user = models.User.objects.get(email_secret=key)
+        user.email_verified = True
+        user.email_secret = ''
+        user.save()
+
+    except models.User.DoesNotExist:
+        pass
+
+    return redirect(reverse('core:home'))
+    
